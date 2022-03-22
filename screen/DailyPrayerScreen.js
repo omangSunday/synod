@@ -1,0 +1,158 @@
+import React from "react";
+import { View, Text, StyleSheet, StatusBar, ScrollView, TouchableOpacity, Image } from "react-native";
+import { useTheme } from '@react-navigation/native';
+import CardView from 'react-native-cardview';
+import {useSelector} from 'react-redux';
+const DailyPrayerScreen = ({route,navigation}) => {
+    const {Title} = route.params;
+    const { colors } = useTheme();
+    const {isDark} = useSelector(state => state.userReducer);
+    return (
+        <View style={[styles.main_container, {backgroundColor: isDark ? '#333333' : '#fff'}]}>
+        <StatusBar backgroundColor={isDark ? '#333333' : 'lightblue'} barStyle="light-content"/>
+        <View  style={[styles.header, {backgroundColor: isDark ? '#333333' : 'lightblue' }]}>
+            <View>
+                <TouchableOpacity  onPress={() =>navigation.navigate('HomeScreen')}>
+                    <Image style={{width: 40, height: 30}} source={require('../assets/back.png')} />
+                </TouchableOpacity>
+            </View>
+
+            <View style={{flex: 1}}>
+                <Text style={{alignSelf: 'center', fontSize: 20, fontWeight: 'bold', color: isDark ? '#fff' : 'black'}}>{Title}</Text>
+            </View>
+        </View>
+        <View style={styles.container_view}>
+        <ScrollView>
+        <CardView style={[styles.box, {backgroundColor: isDark ? '#333333' : '#fff'}]}
+              cardElevation={55}
+              cardMaxElevation={5}
+              cornerRadius={15}
+             >
+                <TouchableOpacity onPress={()=>navigation.navigate('RosaryMistryScreen', {Title: "Rosary Mysteries"})}>
+                    <View style={styles.boxBody}>
+
+                    <View>
+                    <Image
+                        source={require("../assets/mary.jpeg")}
+                        style={styles.image}
+                        resizeMode="cover"
+                        resizeMethod="auto"
+                    />
+                    </View>
+                
+                    <View style={styles.viewtext}>
+                        <Text style={[styles.text, {color: isDark ? '#fff' : 'black'} ]}>
+                            HOW TO PRAY THE HOLY ROSARY
+                        </Text>
+                    </View>
+
+                </View>
+                </TouchableOpacity>
+            </CardView>
+
+            <CardView style={[styles.box, {backgroundColor: isDark ? '#333333' : '#fff'}]}
+              cardElevation={55}
+              cardMaxElevation={5}
+              cornerRadius={15}
+             >
+                <TouchableOpacity onPress={()=>navigation.navigate("AngelusScreen", {Title: "The Angelus Prayer"})}>
+                    <View style={styles.boxBody}>
+
+                    <View>
+                    <Image
+                        source={require("../assets/angelus.jpg")}
+                        style={styles.image}
+                        resizeMode="cover"
+                        resizeMethod="auto"
+                    />
+                    </View>
+                
+                    <View style={styles.viewtext}>
+                        <Text style={[styles.text, {color: isDark ? '#fff' : 'black'} ]}>
+                            HOW TO PRAY THE ANGELUS
+                        </Text>
+                    </View>
+
+                </View>
+                </TouchableOpacity>
+            </CardView>
+
+            <CardView style={[styles.box, {backgroundColor: isDark ? '#333333' : '#fff'}]}
+              cardElevation={55}
+              cardMaxElevation={5}
+              cornerRadius={15}
+             >
+                <TouchableOpacity onPress={()=>navigation.navigate("DivinemercyScreen", {Title: "The Divine Mercy Prayer"})}>
+                    <View style={styles.boxBody}>
+
+                    <View>
+                    <Image
+                        source={require("../assets/devinemercy.jpg")}
+                        style={styles.image}
+                        resizeMode="cover"
+                        resizeMethod="auto"
+                    />
+                    </View>
+                
+                    <View style={styles.viewtext}>
+                        <Text style={[styles.text, {color: isDark ? '#fff' : 'black'} ]}>
+                            HOW TO PRAY THE DIVINE MERCY PRAYER
+                        </Text>
+                    </View>
+
+                </View>
+                </TouchableOpacity>
+            </CardView>
+
+        </ScrollView>
+        </View>
+        </View>
+    )
+}
+
+const styles = StyleSheet.create({
+    main_container: {
+      flex: 1,
+    },
+  
+    container_view: {
+      margin: 5,
+      height: '93%',
+    },
+  
+    box: {
+        margin: 5
+    },
+
+    boxBody: {
+        
+    },
+  
+    text: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: "center"
+      },
+  
+  
+    header: {
+        paddingVertical: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 5
+      },
+
+      image: {
+          borderTopRightRadius: 10,
+          borderTopLeftRadius: 10,
+          width: '100%',
+          height: 200
+      },
+
+  viewtext:{
+      margin: 5,
+  },
+
+  });
+
+export default DailyPrayerScreen;
